@@ -1,6 +1,6 @@
 const fsPromise = require('node:fs/promises');
 
-async function validateInstall(dirPath) {
+async function installValidate(dirPath) {
 
     const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe'];
     let isFilesIncludes = false;
@@ -11,9 +11,9 @@ async function validateInstall(dirPath) {
     isFilesIncludes = filesToCheck.every(file => {
         return files.includes(file);
     });
-    console.log('isFilesIncludes', isFilesIncludes);
+    // console.log('isFilesIncludes', isFilesIncludes);
 
     return isFilesIncludes;
 }
 
-module.exports = validateInstall;
+module.exports = installValidate;

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { execFile, exec } = require('child_process')
-const validateInstall = require('./validateInstall');
-const { log } = require('console');
+const installValidate = require('./installValidate');
+const uninstallVvalidate = require('./uninstallVvalidate');
 
 
 // execFile('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.9_x64.exe',['next'],(error,stdout,stderr)=>{
@@ -23,6 +23,6 @@ const { log } = require('console');
 // })
 
 // validateInstall('C:/Users/ybarhum/Desktop/IQDVT-win32-x64').then(kuni => {
-validateInstall('C:/LitePoint/IQDVT-CL_8XXX-Temp-14-02-2023/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9/Bin').then(kuni => {
+    installValidate('C:/LitePoint/IQDVT-CL_8XXX-Temp-14-02-2023/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9/Bin').then(kuni => {
     // log(kuni);
 })

@@ -11,8 +11,8 @@ async function installValidate(exePath) {
     // automated installation
     try {
         const std = await execFile(exePath, ['/S', `/D=${appPath}`]);
-        console.log(std.stout);
-        console.log(std.stderr);
+        // console.log(std.stout);
+        // console.log(std.stderr);
     }
     catch (err) {
         console.log('err:', err);

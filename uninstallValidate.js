@@ -1,24 +1,23 @@
-const fsPromise = require('node:fs/promises');
-const util = require('util');
-const execFile = util.promisify(require('child_process').execFile);
+const fs = require('fs');
+const { execFile } = require('child_process');
 const path = require('path');
 
 
-async function uninstallValidate() {
+function uninstallValidate() {
     //path to the IQDVT app
     const appPath = 'C:\\IQDVT_TEST\\';
     const uninstallExe = `${appPath}uninst.exe`;
 
     // automated Uninstallation
-    try {
-        const std = await execFile(uninstallExe, ['/S']);
+    const cp = execFile(uninstallExe, ['/S'], (err, stdout, stderr) => {
+        if (err) {
+            console.log(`uninstallValidate - error, cannot run ${uninstallExe}`);
+            // console.log(err);
+            return;
+        }
         // console.log('std.stout', std.stout);
-        // console.log('std.stderr', std.stderr);
-    }
-    catch (err) {
-        console.log(`uninstallValidate - error, cannot run ${uninstallExe}`);
-        // console.log(err);
-    }
+        // console.log('std.stderr', std.stderr);     
+    })
 
     // get the folder of the IQDVT app
     const [, appDir] = appPath.split('\\');
@@ -28,13 +27,15 @@ async function uninstallValidate() {
     const rootDrive = path.resolve(appPath, '..');
     // console.log(rootDrive);
 
-    // checking for app folder deleted
-    const files = await fsPromise.readdir(rootDrive);
-    // console.log(files)
+    setTimeout(() => {
+        // checking for app folder deleted
+        fs.readdir(rootDrive, (err, files) => {
+            // console.log(files)
+            const isUninstalled = !files.includes(appDir);
+            console.log('~~ is uninstalled:', isUninstalled);
+        });
+    }, 1000);
 
-    const isUninstalled = !files.includes(appDir);
-    // console.log('is folder deleted:', isUninstalled);
-    return isUninstalled;
 }
 
 module.exports = uninstallValidate;

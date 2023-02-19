@@ -1,28 +1,49 @@
+const fsPromise = require('node:fs/promises');
 const fs = require('fs');
-const { execFile, exec } = require('child_process')
-const installValidate = require('./installValidate');
-const uninstallVvalidate = require('./uninstallVvalidate');
+// const util = require('util');
+// const execFile = util.promisify(require('child_process').execFile);
+const { execFile } = require('child_process');
+const path = require('path');
+const { spawn } = require('node:child_process');
 
+// const { execFileSync } = require('node:child_process');
 
-// execFile('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.9_x64.exe',['next'],(error,stdout,stderr)=>{
-//     console.log(stdout)
-// })
-
-// exec('dir', (error, stdout, stderr) => {
-//     console.log(stdout);
-//     console.log(stdout.includes('File(s)'));
-//     const str = 'awhtj File 9 File(s)';
-//     const numFiles = str.indexOf('File(s)')-1
-//     console.log();
-// });
-
-// const dir = './';
-
-// fs.readdir(dir, (err, files) => {
-//     console.log(files.length);
-// })
-
-// validateInstall('C:/Users/ybarhum/Desktop/IQDVT-win32-x64').then(kuni => {
-    installValidate('C:/LitePoint/IQDVT-CL_8XXX-Temp-14-02-2023/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9/Bin').then(kuni => {
-    // log(kuni);
+const appPath = 'C:\\IQDVT_TEST\\';
+const iqdvtCli = `${appPath}\\Bin\\IQDVT-CLI.exe`;
+const flowDir = 'c:\LitePoint\flows\celeno_flow_16_02_2023.flow';
+const stationDir = 'c:\LitePoint\stations\celeno_16_02_2023.sta';
+'IQDVT-CLI.exe --flow=c:\\LitePoint\\flows\\celeno_flow_16_02_2023.flow --station=c:\\LitePoint\\stations\\celeno_16_02_2023.sta'
+// console.log('a');
+paramArr = ['--v1','--flow=c:\\LitePoint\\flows\\celeno_flow_16_02_2023.flow', '--station=c:\\LitePoint\\stations\\celeno_16_02_2023.sta']
+const ef = execFile('C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe', paramArr, {'cwd':'C:\\IQDVT_TEST\\Bin'}, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stdout.includes('PASS'));
 })
+
+// ef.stdout.on('data', data => {
+//     console.log(data.toString());
+// });
+// console.log('b');
+
+// setTimeout(() => {
+//     fs.readdir('c:/', (err, files) => {
+//         console.log('e');
+
+//         console.log(files);
+//         console.log('f');
+
+//     });
+// }, 0)
+
+// console.log('c');
+
+// ef.on('close', (code) => {
+//     console.log(`child process close all stdio with code ${code}`);
+//     fs.readdir('c:/IQDVT_TEST/Bin', (err, files) => {
+//         console.log('e');
+
+//         console.log(files,files.length);
+//         console.log('f');
+
+//     });
+// });

@@ -5,7 +5,7 @@ const execFile = util.promisify(require('child_process').execFile);
 
 async function installValidate(exePath) {
 
-    //path to install the IQDVT
+    //path to the installed IQDVT folder
     const appPath = 'C:\\IQDVT_TEST\\';
 
     // automated installation
@@ -19,11 +19,11 @@ async function installValidate(exePath) {
     }
 
     // checks for files exist in directory
-    const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe'];
+    const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt'];
     let isFilesIncludes = false;
 
     const files = await fsPromise.readdir(`${appPath}/Bin`);
-    
+
     isFilesIncludes = filesToCheck.every(file => {
         return files.includes(file);
     });

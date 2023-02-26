@@ -16,7 +16,7 @@ async function installValidate(exePath) {
         // console.log(std.stderr);
     }
     catch (err) {
-        console.log('err:', err);
+        console.log('installValidate - error:', err);
     }
 
     // checks for files exist in directory

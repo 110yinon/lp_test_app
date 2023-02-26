@@ -4,40 +4,24 @@ const uninstallValidate = require('./uninstallValidate');
 
 (
     async () => {
-        // opt 1
-        // console.log('runner');
-        // installValidate('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.10_x64.exe')
-        //     .then((res) => {
-        //         console.log('~~ is Installed:', res);
-        //         console.log('1');
-        //         return uninstallValidate()
-        //     })
-        //     .then((res) => {
-        //         console.log('~~ is Uninstalled:', res);
-        //         console.log('2');
-        //         return installValidate('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.10_x64.exe')
-        //     })
-        //     .then((res) => {
-        //         console.log('~~ is Installed:', res);
-        //         console.log('3');
-        //     })
-        // console.log('4');
-        
-
-
-        // opt 2 (prefered)
         console.log('runner');
-        let res = await installValidate('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.10_x64.exe');
-        console.log('~~ is Installed:', res);
-        console.log('1');
+        
+        // correct install
+        // const installPath = './executions/IQDVT-CL_8XXX_1.0.10_x64.exe';
+        
+        // incorrect install
+        const installPath = './executions/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9_x64.exe';
 
-        res = await uninstallValidate();
-        console.log('~~ is Uninstalled:', res);
-        console.log('2');
+        let isPass = await installValidate(installPath);
+        console.log('~~ is Installed:', isPass);
+        if (!isPass) return;
 
-        await installValidate('C:/Users/ybarhum/Downloads/IQDVT-CL_8XXX_1.0.10_x64.exe')
-        console.log('~~ is Installed:', res);        
-        console.log('3');
-        console.log('4');
+        isPass = await uninstallValidate();
+        console.log('~~ is Uninstalled:', isPass);
+        if (!isPass) return;
+
+        await installValidate(installPath)
+        console.log('~~ is Installed:', isPass);
+        if (!isPass) return;
     }
 )();

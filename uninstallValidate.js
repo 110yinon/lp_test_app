@@ -2,7 +2,7 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 async function uninstallValidate() {
-    // console.log('uninstallValidate kick');
+    console.log('uninstallValidate kick');
     
     // automated Uninstallation
     try {

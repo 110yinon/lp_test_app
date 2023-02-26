@@ -26,7 +26,11 @@ async function installValidate(exePath) {
     const files = await fsPromise.readdir(`${appPath}/Bin`);
 
     isFilesIncludes = filesToCheck.every(file => {
-        return files.includes(file);
+        if(!files.includes(file)){
+            console.log(`>> the '${file}' file is not include`)
+            return false;            
+        }
+        return true;
     });
     // console.log('isFilesIncludes', isFilesIncludes);
 

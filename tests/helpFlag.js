@@ -1,20 +1,21 @@
-const { execFile } = require('child_process');
+const util = require('util');
+const execFile = util.promisify(require('child_process').execFile);
 
 
-function helpFlagValidate(cb) {
-
-    // no 'help' flag version:
-    // const ef = execFile('C:\LitePoint\IQDVT-CL_8XXX-Temp-14-02-2023\IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9\Bin>IQDVT-CLI.exe', ['--help'], { 'cwd': 'C:\\IQDVT_TEST\\Bin' }, (err, stdout, stderr) => {
-
-    // 'help' flag version:
-    const ef = execFile('C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe', ['--help'], { 'cwd': 'C:\\IQDVT_TEST\\Bin' }, (err, stdout, stderr) => {
-        // console.log(stdout);
+async function helpFlagValidate() {
+    try {
+        const { stdout, stderr } = await execFile('C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe', ['--help'], { 'cwd': 'C:\\IQDVT_TEST\\Bin' });
+        // console.log('stdout:', stdout);
+        // console.log('stderr:', stderr);
 
         if (stdout.includes('IQDVT-CLI.exe [options]')) {
-            return cb(true);
+            return true;
         }
-        return cb(false);
-    });
+        return false;
+    }
+    catch (err) {
+        console.log('helpFlagValidate - error:', err);
+    }
 }
 
 module.exports = helpFlagValidate;

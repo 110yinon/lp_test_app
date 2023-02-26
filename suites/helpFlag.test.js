@@ -1,6 +1,7 @@
 const helpFlagValidate = require('../tests/helpFlag');
 
 
-helpFlagValidate((result) => {
-    console.log("~ include '--help':", result);
-});
+(async () => {
+    const isPass = await helpFlagValidate();
+    console.log('~~ is help flag:', isPass);
+})();

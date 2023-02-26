@@ -1,4 +1,4 @@
-const installValidate = require('../installValidate');
+const installValidate = require('../tests/installValidate');
 
 
 // version w/o exports.txt creating

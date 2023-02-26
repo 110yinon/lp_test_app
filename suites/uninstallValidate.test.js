@@ -1,4 +1,4 @@
-const uninstallValidate = require('../uninstallValidate');
+const uninstallValidate = require('../tests/uninstallValidate');
 
 
 uninstallValidate();

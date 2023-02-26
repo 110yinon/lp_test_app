@@ -1,4 +1,4 @@
-const flowANDstationValidate = require('../flow&station');
+const flowANDstationValidate = require('../tests/flow&station');
 
 
 // opt 1 - doesnt wait for the execFile cb to return

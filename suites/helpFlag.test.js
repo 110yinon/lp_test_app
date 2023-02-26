@@ -1,4 +1,4 @@
-const helpFlagValidate = require('../helpFlag');
+const helpFlagValidate = require('../tests/helpFlag');
 
 
 helpFlagValidate((result) => {

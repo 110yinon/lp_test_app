@@ -2,9 +2,12 @@ const installValidate = require('../tests/installValidate');
 
 
 (async () => {
+    
+    // naama's update
+    const installPath = './executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe';
 
     // correct install
-    const installPath = './executions/IQDVT-CL_8XXX_1.0.10_x64.exe';
+    // const installPath = './executions/IQDVT-CL_8XXX_1.0.10_x64.exe';
 
     // incorrect install
     // const installPath = './executions/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9_x64.exe';

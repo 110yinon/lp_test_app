@@ -1,14 +1,14 @@
 const helpFlagValidate = require('./tests/helpFlag');
 const installValidate = require('./tests/installValidate');
 const uninstallValidate = require('./tests/uninstallValidate');
-
+const flowANDstationValidate = require('./tests/flow&station');
 
 (
     async () => {
         console.log('runner');
         
         // correct install
-        const installPath = './executions/IQDVT-CL_8XXX_1.0.10_x64.exe';
+        const installPath = './executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe';
         
         // incorrect install
         // const installPath = './executions/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9_x64.exe';
@@ -29,6 +29,9 @@ const uninstallValidate = require('./tests/uninstallValidate');
         console.log('~~ is help flag:', isHelpFlag);
         if (!isHelpFlag) return;
 
+        const flowPass = await flowANDstationValidate();
+        console.log('~~ flow Pass:', flowPass);
+        if (!flowPass) return;
         
     }
 )();

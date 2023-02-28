@@ -1,3 +1,4 @@
+const helpFlagValidate = require('./tests/helpFlag');
 const installValidate = require('./tests/installValidate');
 const uninstallValidate = require('./tests/uninstallValidate');
 
@@ -12,16 +13,22 @@ const uninstallValidate = require('./tests/uninstallValidate');
         // incorrect install
         // const installPath = './executions/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9_x64.exe';
 
-        let isPass = await installValidate(installPath);
-        console.log('~~ is Installed:', isPass);
-        if (!isPass) return;
+        let isInstall = await installValidate(installPath);
+        console.log('~~ is Installed:', isInstall);
+        if (!isInstall) return;
 
-        isPass = await uninstallValidate();
-        console.log('~~ is Uninstalled:', isPass);
-        if (!isPass) return;
+        const isUnInstall = await uninstallValidate();
+        console.log('~~ is Uninstalled:', isUnInstall);
+        if (!isUnInstall) return;
 
-        await installValidate(installPath)
-        console.log('~~ is Installed:', isPass);
-        if (!isPass) return;
+        isInstall = await installValidate(installPath)
+        console.log('~~ is Installed:', isInstall);
+        if (!isInstall) return;
+
+        const isHelpFlag = await helpFlagValidate();
+        console.log('~~ is help flag:', isHelpFlag);
+        if (!isHelpFlag) return;
+
+        
     }
 )();

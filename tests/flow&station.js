@@ -14,14 +14,16 @@ async function flowANDstationValidate() {
     console.log('stdout:', stdout);
     console.log('stderr', stderr);
 
+    // gets the test summray section from the output:
     const [, testsSummary] = stdout.split('Summary:');
 
+    // for Older version where startupFiles is must:
     // case of no startupFiles.json | startupFiles.json is empty
     if (!testsSummary) {
         console.log('is test pass:', false);
         return false;
     }
-
+    // checks for failed tests on the tests summray:
     console.log('is test pass:', !testsSummary.includes('FAILED'));
     return !testsSummary.includes('FAILED');
 }

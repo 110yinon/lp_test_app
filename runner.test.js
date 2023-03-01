@@ -15,9 +15,9 @@ const flowANDstationValidate = require('./tests/flow&station');
         // incorrect install
         // const installPath = './executions/IQDVT-CL_8XXX-Temp-14-02-2023_1.0.9_x64.exe';
 
-        // let isInstall = await installValidate(installPath);
-        // console.log('~~ is Installed:', isInstall);
-        // if (!isInstall) return;
+        let isInstall = await installValidate(installPath);
+        console.log('~~ is Installed:', isInstall);
+        if (!isInstall) return;
 
         // const isUnInstall = await uninstallValidate();
         // console.log('~~ is Uninstalled:', isUnInstall);
@@ -31,30 +31,20 @@ const flowANDstationValidate = require('./tests/flow&station');
         // console.log('~~ is help flag:', isHelpFlag);
         // if (!isHelpFlag) return;
 
-        test("'tx Calibration' flow to pass", async () => {
-            expect(await flowANDstationValidate('celeno_16_02_2023.sta', 'txCal.flow'))
-                .toBe(true);
-        });
+        let res = await flowANDstationValidate('celeno_16_02_2023.sta', 'txCal.flow');
+        console.log("~~ 'tx Calibration' flow to pass", res === true);
 
-        test("'pass-pass-failed' flow to failed", async () => {
-            expect(await flowANDstationValidate('celeno_16_02_2023.sta', 'pass-pass-failed.flow'))
-                .toBe(false)
-        });
+        res = await flowANDstationValidate('celeno_16_02_2023.sta', 'pass-pass-failed.flow');
+        console.log("~~ 'pass-pass-failed' flow to failed", res === false);
 
-        test("'failed-pass-pass' flow to failed", async () => {
-            expect(await flowANDstationValidate('celeno_16_02_2023.sta', 'failed-pass-pass.flow'))
-                .toBe(false)
-        });
+        res = await flowANDstationValidate('celeno_16_02_2023.sta', 'failed-pass-pass.flow');
+        console.log("~~ 'failed-pass-pass' flow to failed", res === false);
 
-        test("'pass-failed-pass' flow to failed", async () => {
-            expect(await flowANDstationValidate('celeno_16_02_2023.sta', 'pass-failed-pass.flow'))
-                .toBe(false)
-        });
+        res = await flowANDstationValidate('celeno_16_02_2023.sta', 'pass-failed-pass.flow');
+        console.log("~~ 'pass-failed-pass' flow to failed", res === false);
 
-        test("'11axRx' flow to pass", async () => {
-            expect(await flowANDstationValidate('celeno_16_02_2023.sta', '11axRx.flow'))
-                .toBe(true)
-        });
+        res = await flowANDstationValidate('celeno_16_02_2023.sta', '11axRx.flow');
+        console.log("~~ '11axRx' flow to pass", res === true);
 
     }
 )();

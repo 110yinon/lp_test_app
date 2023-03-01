@@ -4,7 +4,7 @@ const execFile = util.promisify(require('child_process').execFile);
 
 
 async function installValidate(exePath) {
-    console.log('installValidate kick');
+    // console.log('installValidate kick');
 
     //path to the installed IQDVT folder
     const appPath = 'C:\\IQDVT_TEST\\';
@@ -17,6 +17,7 @@ async function installValidate(exePath) {
     }
     catch (err) {
         console.log('installValidate - error:', err);
+        return false;
     }
 
     // checks for files exist in directory

@@ -25,16 +25,16 @@ async function flowANDstationValidate(...flags) {
     const stationDir = path.resolve(testMainDir, 'stations', station);
     const flowDir = path.resolve(testMainDir, 'flows', flow);
 
-    console.log('stationDir:', stationDir);
-    console.log('flowDir:', flowDir);
+    // console.log('stationDir:', stationDir);
+    // console.log('flowDir:', flowDir);
 
     const paramArr = ['--v1', `--station=${stationDir}`, `--flow=${flowDir}`];
     // const paramArr = ['--v1'];
 
     const { stdout, stderr } = await execFile('IQDVT-CLI.exe', paramArr, { cwd: 'C:\\IQDVT_TEST\\Bin', encoding: 'utf8' });
 
-    console.log('stdout:', stdout);
-    console.log('stderr', stderr);
+    // console.log('stdout:', stdout);
+    // console.log('stderr', stderr);
 
     // gets the test summray section from the output:
     const [, testsSummary] = stdout.split('Summary:');
@@ -42,11 +42,11 @@ async function flowANDstationValidate(...flags) {
     // for Older version where startupFiles is must:
     // case of no startupFiles.json | startupFiles.json is empty
     if (!testsSummary) {
-        console.log('is test pass:', false);
+        // console.log('is test pass:', false);
         return false;
     }
     // checks for failed tests on the tests summray:
-    console.log('is test pass:', !testsSummary.includes('FAILED'));
+    // console.log('is test pass:', !testsSummary.includes('FAILED'));
     return !testsSummary.includes('FAILED');
 }
 

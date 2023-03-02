@@ -4,7 +4,7 @@ const installValidate = require('../tests/installValidate');
 (async () => {
     
     // eran version
-    // const installPath = './executions/IQDVT-Celeno-6XXX_1.1.1_x64.exe';
+    // const installPath = './executions/IQDVT-Celeno-6XXX_1.0.0_x64.exe';
 
     // naama's update
     const installPath = './executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe';

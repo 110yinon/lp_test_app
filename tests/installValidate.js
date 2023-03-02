@@ -24,7 +24,7 @@ async function installValidate(exePath) {
     const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt'];
     let isFilesIncludes = false;
 
-    const files = await fsPromise.readdir(`${appPath}/Bin`);
+    const files = await fsPromise.readdir(`${appPath}`);
 
     isFilesIncludes = filesToCheck.every(file => {
         if(!files.includes(file)){

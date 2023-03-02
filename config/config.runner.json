@@ -1,0 +1,19 @@
+{
+    "ignoreBelow": true,
+    "tests": [
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "iterate.flow",
+            "comment": "tx calibration to pass",
+            "expect": true
+        },
+        {
+            "command": "cli",
+            "station": "celeno_16_02_2023.sta",
+            "flow": "iterate.flow",
+            "comment": "10ax rx to pass",
+            "expect": true
+        }
+    ]
+}

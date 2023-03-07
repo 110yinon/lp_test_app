@@ -1,6 +1,6 @@
 const helpFlagValidate = require('./tests/helpFlag');
 const installValidateSync = require('./tests/installValidateSync');
-const uninstallValidate = require('./tests/uninstallValidate');
+const uninstallValidateSync = require('./tests/uninstallValidateSync');
 const flowANDstationValidate = require('./tests/flow&station');
 const flowANDstationValidateSync = require('./tests/flow&StationSync');
 const configFile = require('./config/config.runner.json');
@@ -9,12 +9,22 @@ const configFile = require('./config/config.runner.json');
 
 (
     () => {
-        console.log(configFile.tests);
-        configFile.tests.forEach((test, index) => {
+        // console.log(configFile.tests);
+
+        for (const [index, test] of configFile.tests.entries()) {
+        
             switch (test.command.toLowerCase()) {
+                
                 case 'install':
                     const isInstall = installValidateSync(test.path, test.isBinFolder);
                     console.log('~~ is Installed:', isInstall === true);
+                    if (!isInstall) return;
+                    break;
+
+                case 'uninstall':
+                    const isUninstall = uninstallValidateSync();
+                    console.log('~~ is Uninstalled:', isUninstall === true);
+                    if (!isUninstall) return;
                     break;
 
                 // case 'cli':
@@ -26,7 +36,7 @@ const configFile = require('./config/config.runner.json');
                 default:
                     break;
             }
-        });
+        }
     }
 )();
 

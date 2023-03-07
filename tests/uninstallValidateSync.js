@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');
 
 function uninstallValidateSync() {
-    console.log('uninstallValidate kick');
+    // console.log('uninstallValidate kick');
 
     // automated Uninstallation
     try {

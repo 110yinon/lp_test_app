@@ -2,7 +2,7 @@ const fs = require('fs');
 const { execFileSync } = require('child_process');
 
 
-function installValidate(exePath, isBinFolder) {
+function installValidateSync(exePath, isBinFolder) {
     // console.log('installValidate kick');
 
     //path for IQDVT installation folder
@@ -37,4 +37,4 @@ function installValidate(exePath, isBinFolder) {
 
 }
 
-module.exports = installValidate;
+module.exports = installValidateSync;

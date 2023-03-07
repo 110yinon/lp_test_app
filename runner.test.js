@@ -1,29 +1,34 @@
 const helpFlagValidate = require('./tests/helpFlag');
-const installValidate = require('./tests/installValidate');
+const installValidateSync = require('./tests/installValidateSync');
 const uninstallValidate = require('./tests/uninstallValidate');
 const flowANDstationValidate = require('./tests/flow&station');
 const flowANDstationValidateSync = require('./tests/flow&StationSync');
 const configFile = require('./config/config.runner.json');
 
-// (
-//     () => {
-//         // SYNC VERSION - forEach - WORKS ALWAYS
-//         const start = Date.now();
 
-//         configFile.tests.forEach((test, index) => {
-//             switch (test.command.toLowerCase()) {
-//                 case 'cli':
-//                     console.log(index);
-//                     let res = flowANDstationValidateSync(test.station, test.flow);
-//                     console.log('index:', index, test.comment, res === test.expect);
-//                     break;
-//                 default:
-//                     break;
-//             }
-//         });
-//         console.log('time elapsed:', Date.now() - start);
-//     }
-// )();
+
+(
+    () => {
+        console.log(configFile.tests);
+        configFile.tests.forEach((test, index) => {
+            switch (test.command.toLowerCase()) {
+                case 'install':
+                    const isInstall = installValidateSync(test.path, test.isBinFolder);
+                    console.log('~~ is Installed:', isInstall === true);
+                    break;
+
+                // case 'cli':
+                //     console.log(index);
+                //     let res = flowANDstationValidate(test.station, test.flow);
+                //     console.log('index:', index, test.comment, res === test.expect);
+
+                // break;
+                default:
+                    break;
+            }
+        });
+    }
+)();
 
 
 

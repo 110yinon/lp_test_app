@@ -1,25 +1,23 @@
-const fsPromise = require('node:fs/promises');
-const util = require('util');
-const execFile = util.promisify(require('child_process').execFile);
+const fs = require('fs');
+const { execFileSync } = require('child_process');
 
 
-async function installValidate(exePath, isBinFolder) {
+function installValidate(exePath, isBinFolder) {
     // console.log('installValidate kick');
 
-    //path to the installed IQDVT folder
+    //path for IQDVT installation folder
     const appPath = 'C:\\IQDVT_TEST\\';
 
     // automated installation
     try {
-        const std = await execFile(exePath, ['/S', `/D=${appPath}`]);
-        // console.log(std.stout);
-        // console.log(std.stderr);
+        const stdout = execFileSync(exePath, ['/S', `/D=${appPath}`], { encoding: 'utf8' });
+        // console.log('stdout:', stdout);
 
         // checks for files exist in directory
         const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt'];
         let isFilesIncludes = false;
 
-        const files = await fsPromise.readdir(`${appPath}${isBinFolder ? '/Bin' : ''}`);
+        const files = fs.readdirSync(`${appPath}${isBinFolder ? '/Bin' : ''}`);
 
         isFilesIncludes = filesToCheck.every(file => {
             if (!files.includes(file)) {
@@ -33,9 +31,10 @@ async function installValidate(exePath, isBinFolder) {
         return isFilesIncludes;
     }
     catch (err) {
-        console.log('installValidate - error:', err);
+        console.log('installValidateSync - error:', err);
         return false;
     }
+
 }
 
 module.exports = installValidate;

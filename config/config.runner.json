@@ -12,6 +12,10 @@
             "expect": true
         },
         {
+            "command":"help",
+            "expect": true
+        },
+        {
             "command": "cli",
             "station": "celeno_16_02_2023.sta",
             "flow": "iterate.flow",

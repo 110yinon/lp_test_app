@@ -3,6 +3,7 @@ const execFile = util.promisify(require('child_process').execFile);
 
 
 async function helpFlagValidate() {
+    console.log('helpFlagValidate');
     try {
         const { stdout, stderr } = await execFile('C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe', ['--help'], { 'cwd': 'C:\\IQDVT_TEST\\Bin' });
         // console.log('stdout:', stdout);
@@ -15,6 +16,7 @@ async function helpFlagValidate() {
     }
     catch (err) {
         console.log('helpFlagValidate - error:', err);
+        return false;
     }
 }
 

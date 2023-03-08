@@ -1,4 +1,4 @@
-const helpFlagValidate = require('./tests/helpFlag');
+const helpFlagValidateSync = require('./tests/helpFlagSync');
 const installValidateSync = require('./tests/installValidateSync');
 const uninstallValidateSync = require('./tests/uninstallValidateSync');
 const flowANDstationValidate = require('./tests/flow&station');
@@ -12,27 +12,33 @@ const configFile = require('./config/config.runner.json');
         // console.log(configFile.tests);
 
         for (const [index, test] of configFile.tests.entries()) {
-        
+
             switch (test.command.toLowerCase()) {
-                
+
                 case 'install':
                     const isInstall = installValidateSync(test.path, test.isBinFolder);
                     console.log('~~ is Installed:', isInstall === true);
                     if (!isInstall) return;
                     break;
 
-                case 'uninstall':
-                    const isUninstall = uninstallValidateSync();
-                    console.log('~~ is Uninstalled:', isUninstall === true);
-                    if (!isUninstall) return;
+                // case 'uninstall':
+                //     const isUninstall = uninstallValidateSync();
+                //     console.log('~~ is Uninstalled:', isUninstall === true);
+                //     if (!isUninstall) return;
+                //     break;
+
+
+                case 'help':
+                    const isPass = helpFlagValidateSync();
+                    console.log('~~ is help flag:', isPass);
                     break;
 
-                // case 'cli':
-                //     console.log(index);
-                //     let res = flowANDstationValidate(test.station, test.flow);
-                //     console.log('index:', index, test.comment, res === test.expect);
 
-                // break;
+                case 'cli':
+                    let res = flowANDstationValidateSync(test.station, test.flow);
+                    console.log('index:', index, test.comment, res === test.expect);
+                    break;
+
                 default:
                     break;
             }

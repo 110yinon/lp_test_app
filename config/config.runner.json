@@ -1,10 +1,10 @@
 {
     "ignoreBelow": true,
+    "isBinFolder": true,
     "tests": [
         {
             "command":"install",
-            "path":"./executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",
-            "isBinFolder": true,
+            "path":"./executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",            
             "expect": true
         },
         {

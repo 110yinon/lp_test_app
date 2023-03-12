@@ -3,7 +3,7 @@ const path = require('path');
 
 const { execFileSync } = require('child_process');
 
-function flowANDstationValidateSync(...flags) {
+function flowANDstationValidateSync(isBinFolder, ...flags) {
 
     // 'no-order' feature - we can put flow | station first - and it works
     const [station] = flags.filter(flag => flag.includes('.sta'));
@@ -18,9 +18,9 @@ function flowANDstationValidateSync(...flags) {
     }
 
 
-    // make sure we always get the c:\........\test - main folder
+    // make sure we always get the c:\........\lp_test_app folder
     // though we run from ./runner.test.js | ./suites/flow&station.test.js
-    const testMainDir = path.resolve(__dirname.split('test - main')[0], 'test - main');
+    const testMainDir = path.resolve(__dirname.split('lp_test_app')[0], 'lp_test_app');
 
     const stationDir = path.resolve(testMainDir, 'stations', station);
     const flowDir = path.resolve(testMainDir, 'flows', flow);
@@ -31,7 +31,7 @@ function flowANDstationValidateSync(...flags) {
     const paramArr = ['--v1', `--station=${stationDir}`, `--flow=${flowDir}`];
 
     try {
-        const stdout = execFileSync('IQDVT-CLI.exe', paramArr, { cwd: 'C:\\IQDVT_TEST\\Bin', encoding: 'utf8' });
+        const stdout = execFileSync('IQDVT-CLI.exe', paramArr, { cwd: `C:\\IQDVT_TEST\\${isBinFolder ? 'Bin' : ''}`, encoding: 'utf8' });
         // console.log('stdout:', stdout);
 
         // gets the test summray section from the output:

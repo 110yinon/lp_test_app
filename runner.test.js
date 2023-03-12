@@ -16,7 +16,7 @@ const configFile = require('./config/config.runner.json');
             switch (test.command.toLowerCase()) {
 
                 case 'install':
-                    const isInstall = installValidateSync(test.path, test.isBinFolder);
+                    const isInstall = installValidateSync(test.path, configFile.isBinFolder);
                     console.log('~~ is Installed:', isInstall === true);
                     if (!isInstall) return;
                     break;
@@ -35,7 +35,7 @@ const configFile = require('./config/config.runner.json');
 
 
                 case 'cli':
-                    let res = flowANDstationValidateSync(test.station, test.flow);
+                    let res = flowANDstationValidateSync(configFile.isBinFolder, test.station, test.flow);
                     console.log('index:', index, test.comment, res === test.expect);
                     break;
 

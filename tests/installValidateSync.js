@@ -17,7 +17,7 @@ function installValidateSync(exePath, isBinFolder) {
         const filesToCheck = ['IQTest.dll', 'IQTestAPI.dll', 'IQDVT.exe', 'IQDVT-CLI.exe', 'exports.txt'];
         let isFilesIncludes = false;
 
-        const files = fs.readdirSync(`${appPath}${isBinFolder ? '/Bin' : ''}`);
+        const files = fs.readdirSync(`${appPath}${isBinFolder ? 'Bin' : ''}`);
 
         isFilesIncludes = filesToCheck.every(file => {
             if (!files.includes(file)) {

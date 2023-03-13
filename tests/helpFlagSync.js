@@ -1,10 +1,10 @@
 const { execFileSync } = require('child_process');
 
 
-function helpFlagValidateSync() {
-    console.log('helpFlagValidate');
+function helpFlagValidateSync(isBinFolder) {
+    // console.log('helpFlagValidate');
     try {
-        const stdout = execFileSync('C:\\IQDVT_TEST\\Bin\\IQDVT-CLI.exe', ['--help'], { 'cwd': 'C:\\IQDVT_TEST\\Bin' });
+        const stdout = execFileSync('IQDVT-CLI.exe', ['--help'], { 'cwd': `C:\\IQDVT_TEST\\${isBinFolder ? 'Bin' : ''}` });
         // console.log('stdout:', stdout);
 
         if (stdout.includes('IQDVT-CLI.exe [options]')) {

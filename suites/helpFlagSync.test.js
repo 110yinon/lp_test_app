@@ -2,6 +2,7 @@ const helpFlagValidateSync = require('../tests/helpFlagSync');
 
 
 (() => {
-    const isPass = helpFlagValidateSync();
+    const isBinFolder = false;
+    const isPass = helpFlagValidateSync(isBinFolder);
     console.log('~~ is help flag:', isPass);
 })();

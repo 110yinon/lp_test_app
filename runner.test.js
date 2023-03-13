@@ -29,7 +29,7 @@ const configFile = require('./config/config.runner.json');
 
 
                 case 'help':
-                    const isPass = helpFlagValidateSync();
+                    const isPass = helpFlagValidateSync(configFile.isBinFolder);
                     console.log('~~ is help flag:', isPass);
                     break;
 

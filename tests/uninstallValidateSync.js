@@ -5,9 +5,12 @@ function uninstallValidateSync() {
 
     // automated Uninstallation
     try {
-        const stdout = execSync('.\\batches\\uninstall-timeout-nodejs.bat', { encoding: 'utf8' });
+        // stdio:'inherit' for the stdin would cancel the redirect error:
+        // ERROR: Input redirection is not supported, exiting the process immediately.
+        const stdout = execSync('.\\batches\\uninstall-timeout-nodejs.bat', { encoding: 'utf8' ,stdio:['inherit','pipe','pipe']});
         // console.log('stdout:');
-        // console.log(stdout);
+        // console.log(stdout);        
+        
         return stdout.includes('pass');
     }
     catch (err) {

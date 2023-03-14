@@ -1,7 +1,6 @@
 const helpFlagValidateSync = require('./tests/helpFlagSync');
 const installValidateSync = require('./tests/installValidateSync');
 const uninstallValidateSync = require('./tests/uninstallValidateSync');
-const flowANDstationValidate = require('./tests/flow&station');
 const flowANDstationValidateSync = require('./tests/flow&StationSync');
 const configFile = require('./config/config.runner.json');
 
@@ -18,14 +17,14 @@ const configFile = require('./config/config.runner.json');
                 case 'install':
                     const isInstall = installValidateSync(test.path, configFile.isBinFolder);
                     console.log('~~ is Installed:', isInstall === true);
-                    if (!isInstall) return;
+                    if (!isInstall) return console.log('~~ test suites abort ~~');;
                     break;
 
-                // case 'uninstall':
-                //     const isUninstall = uninstallValidateSync();
-                //     console.log('~~ is Uninstalled:', isUninstall === true);
-                //     if (!isUninstall) return;
-                //     break;
+                case 'uninstall':
+                    const isUninstall = uninstallValidateSync();
+                    console.log('~~ is Uninstalled:', isUninstall === true);
+                    if (!isUninstall) return console.log('~~ test suites abort ~~');;
+                    break;
 
 
                 case 'help':
@@ -36,13 +35,15 @@ const configFile = require('./config/config.runner.json');
 
                 case 'cli':
                     let res = flowANDstationValidateSync(configFile.isBinFolder, test.station, test.flow);
-                    console.log('index:', index, test.comment, res === test.expect);
+                    // console.log('index:', index, test.comment, res === test.expect);
+                    console.log('~~', test.comment, res === test.expect);
                     break;
 
                 default:
                     break;
             }
         }
+        console.log('~~ test suites completed');
     }
 )();
 

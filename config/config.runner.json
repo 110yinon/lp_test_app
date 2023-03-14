@@ -1,53 +1,58 @@
 {
     "ignoreBelow": true,
-    "isBinFolder": true,
+    "isBinFolder": false,
     "tests": [
         {
-            "command":"install",
-            "path":"./executions/IQDVT-CL_8XXX_1.0.9_x64 uninst broken.exe",            
+            "command": "install",
+            "path": "./executions/IQDVT-Celeno-6XXX_1.1.2_Eng1_x64.exe",
             "expect": true
         },
         {
-            "command":"uninstall",
+            "command": "uninstall",
             "expect": true
         },
         {
-            "command":"help",
+            "command": "install",
+            "path": "./executions/IQDVT-Celeno-6XXX_1.1.2_Eng1_x64.exe",
+            "expect": true
+        },
+        {
+            "command": "help",
             "expect": true
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "iterate.flow",
-            "comment": "iterate to pass",
+            "station": "station-CL6.sta",
+            "flow": "./CL-6 flows/11axRx-cl6.flow",
+            "comment": "RX flow to pass",
             "expect": true
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "pass-failed-pass.flow",
-            "comment": "pass-failed-pass to FAILED",
+            "station": "station-CL6.sta",
+            "flow": "./CL-6 flows/pass-failed-pass-cl6.flow",
+            "comment": "pass-failed-pass-cl6 flow to failed",
             "expect": false
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "iterate.flow",
-            "comment": "iterate to pass",
+            "station": "station-CL6.sta",
+            "flow": "./CL-6 flows/11axTx-cl6.flow",
+            "comment": "TX flow to pass",
             "expect": true
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "pass-pass-failed.flow",
-            "comment": "pass-pass-failed to FAILED",
+            "station": "station-CL6.sta",
+            "flow": "./CL-6 flows/failed-pass-pass-cl6.flow",
+            "comment": "failed-pass-pass-cl6 flow to failed",
             "expect": false
         },
         {
             "command": "cli",
-            "station": "celeno_16_02_2023.sta",
-            "flow": "11axRx.flow",
-            "comment": "11ax rx to pass",
+            "station": "station-CL6.sta",
+            "flow": "./CL-6 flows/iterate-cl6.flow",
+            "comment": "iterate-cl6 flow to pass",
             "expect": true
         }
     ]

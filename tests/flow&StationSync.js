@@ -36,6 +36,8 @@ function flowANDstationValidateSync(isBinFolder, ...flags) {
 
         // gets the test summray section from the output:
         const [, testsSummary] = stdout.split('Summary:');
+        // console.log('testsSummary', testsSummary);
+        if (!testsSummary) return false;
         
         // checks for failed tests on the tests summray:
         // console.log('is test pass:', !testsSummary.includes('FAILED'));
